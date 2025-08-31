@@ -8,6 +8,48 @@
     <script src="main.js"></script>
 </head>
 <body>
+    <div class="container">
+        <div class="widget" id="head-widget">
+            <h1 style="font-size: 60px;">The Library</h1>
+            <button id="form-button">Add Book</button>
+        </div>
+
+        <div class="widget" id="body-widget">
+            <div class="genre-widget">
+                <label for="genre" style="font-size: 20px;">Genre:</label>
+                <select id="genre">
+                    <option value="all">All Genres</option>
+                    <option value="fiction">Fiction</option>
+                    <option value="non-fiction">Non-Fiction</option>
+                    <option value="science-fiction">Science-Fiction</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="romance">Romance</option>
+                    <option value="thriller">Thriller</option>
+                    <option value="biography">Biography</option>
+                    <option value="history">History</option>
+                    <option value="self-improvement">Self-Improvement</option>
+                    <option value="technical">Technical</option>
+                    <option value="manga">Manga</option>
+
+                </select>
+            </div>
+
+            <div class="author-widget">
+                <label for="author" style="font-size: 20px;">Author:</label>
+                <input id="author" placeholder="Ernest Hemmingway"/>
+                
+            </div>
+
+            <div class="title-widget">
+                <label for="title" style="font-size: 20px;">Title:</label>
+                <input id="title" placeholder="The Old Man and the Sea"/>
+            </div>
+            
+            <button class="next-button">Next</button>
+
+        </div>
+    </div>
     
 </body>
 </html>
