@@ -11,7 +11,10 @@
         <div class="widget" id="head-widget">
             <h1 style="font-size: 60px;">The Library</h1>
 
-            <button id="open-modal">Add Book</button>
+            <div>
+                <button id="open-modal">Add Book</button>
+                <button id="reload">Reload</button>
+            </div>
             <form class="modal" id="modal">
                 <div class="modal-inner">
                     <h2>Add Book</h2>
@@ -48,9 +51,10 @@
                 </div>
 
             </form>
+            
         </div>
 
-        <div class="widget" id="body-widget">
+        <div class="widget" id="filter-widget">
             <div class="genre-widget">
                 <label for="genre" style="font-size: 20px;">Genre:</label>
                 <select id="genre">
@@ -81,10 +85,13 @@
                 <label for="title" style="font-size: 20px;">Title:</label>
                 <input id="title" placeholder="The Old Man and the Sea"/>
             </div>
-            <button class="previous-button" id="previous">Previous</button>
-            <button class="next-button" id="next">Next</button>
-
         </div>
+
+        <div class="widget" id="body-widget">
+            
+           
+        </div>
+
     </div>
     
 

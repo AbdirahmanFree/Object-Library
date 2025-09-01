@@ -10,7 +10,7 @@
     width: 100vw;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: 2fr 1fr 6fr;
 }
 
 #head-widget {
@@ -24,11 +24,21 @@
 
 
 #body-widget {
+    grid-area: 3/1/4/2;
+    background-color: #1B263B;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows:  3fr 3fr;
+    gap: 10px;
+}
+
+#filter-widget {
     grid-area: 2/1/3/2;
     background-color: #1B263B;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 3fr 3fr 1fr;
-    gap: 10px;
+    grid-template-rows: 1fr;
+}
+#footer-widget {
+    background-color: #0D1B2A;
 }
 
 .widget {
@@ -51,7 +61,7 @@ select {
     background-color: #415A77;
 }
 
-#open-modal {
+#open-modal,#reload {
     background-color: #1B263B;
     justify-self: start;
 }
@@ -126,5 +136,14 @@ input {
 
 
 
+.read-false {
+    background-color: red;
+    color: white;
+}
+
+.read-true {
+    background-color: green;
+    color: white;
+}
 
 

@@ -16,6 +16,22 @@ function addBookToLibrary(title, author, genre, pages, read,) {
     library.push(book)
 }
 
+function toggleRead(book) {
+    if (book.read == true) {
+        book.read = false;
+    }
+    else {
+        book.read = true
+    }
+    console.log(book)
+}
+
+function removeBookCard(index){
+    library.splice(index,1);
+    displayLibrary(page_index);
+    console.log(library)
+}
+
 /// Add book buttons
 const openBtn = document.getElementById("open-modal");
 const closeBtn = document.getElementById("close-modal")
@@ -28,11 +44,12 @@ const inputPages = document.getElementById("pages-M");
 const genreSelector = document.getElementById("genre");
 const searchAuthor = document.getElementById("author");
 const searchTitle = document.getElementById("title");
+const reloadBtn = document.getElementById("reload");
 
 
 // where we will add cards
 const bodyWidget = document.getElementById("body-widget");
-const bodyWidgetClone = bodyWidget.cloneNode(true);
+
 
 openBtn.addEventListener("click", () => {
     modal.classList.add("open");
@@ -55,41 +72,63 @@ modal.addEventListener('submit', (e) => {
     displayLibrary(page_index);
 })
 
-function displayLibrary(page) {
-    let pageNumber = page;
-    let booksToDisplay = filterBooks(library).reverse();
-    let startingIndex = (page-1) *6
-    // display books from pagenumbber
-    bodyWidget.innerHTML = bodyWidgetClone.innerHTML
+function displayLibrary(page = 1) {
+  const booksToDisplay = filterBooks(library).slice().reverse();
+  const startingIndex = (page - 1) * 6;
+  const end = Math.min(startingIndex + 6, booksToDisplay.length);
 
-    
-    for (let i = startingIndex; i < (startingIndex +6); i++) {
-        const card = document.createElement("div");
-        const title = document.createElement("h2");
-        title.textContent = (booksToDisplay[i].title || "");
-        const author = document.createElement("span");
-        author.textContent = booksToDisplay[i].author;
-        const pages = document.createElement("span");
-        pages.textContent = booksToDisplay[i].pages;
-        const genre =document.createElement("span");
-        genre.textContent = booksToDisplay[i].genre;
-        const read = document .createElement("button");
-        const removeBook = document.createElement("button");
-        removeBook.style.height = "30px";
-        read.style.height = "30px";
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(pages);
-        card.appendChild(genre)
-        card.appendChild(read);
-        card.appendChild(removeBook);
-        card.classList.add("book-card")
+  // you don't need the clone; just clear the container
+  bodyWidget.replaceChildren();
 
-        bodyWidget.appendChild(card)
-    }
+  for (let i = startingIndex; i < end; i++) {
+    const b = booksToDisplay[i];
 
+    const card = document.createElement("div");
+    const title = document.createElement("h2");
+    title.textContent = b.title || "";
 
-   
+    const author = document.createElement("span");
+    author.textContent = b.author || "";
+
+    const pages = document.createElement("span");
+    pages.textContent = (b.pages ?? "") + "";
+
+    const genre = document.createElement("span");
+    genre.textContent = b.genre || "";
+
+    const read = document.createElement("button");
+    read.classList.add("read-false")
+    read.textContent = "Not Read"
+    read.addEventListener("click", () => {
+        toggleRead(b);
+        if (b.read) {
+            read.classList.remove("read-false")
+            read.classList.add("read-true")
+           
+        }
+        else {
+            read.classList.remove("read-true")
+            read.classList.add("read-false")
+            
+        }
+        read.textContent = b.read ? "Read" : "Not read";
+    })
+
+    const removeBook = document.createElement("button");
+    removeBook.textContent = "Remove";
+    removeBook.classList.add("read-false")
+    removeBook.style.height = "30px";
+    removeBook.addEventListener("click", () => {
+        removeBookCard(i)
+
+    })
+    read.style.height = "30px";
+
+    card.append(title, author, pages, genre, read, removeBook);
+    card.classList.add("book-card");
+
+    bodyWidget.appendChild(card);
+  }
 }
 
 function filterBooks(arr) {
@@ -115,4 +154,12 @@ function filterBooks(arr) {
     return books
 }
 
+reloadBtn.addEventListener("click", () => {
+    return displayLibrary(page_index);
+})
 
+[genreSelector, searchAuthor, searchTitle].forEach(el => {
+  el.addEventListener("input", () => displayLibrary(1));
+});
+
+document.addEventListener("DOMContentLoaded", () => displayLibrary(page_index));
