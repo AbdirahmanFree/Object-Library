@@ -1,13 +1,16 @@
 const library = []
 let page_index = 1;
 
-function Book(title, author, genre, pages, read, id) {
-    this.title = title,
-    this.author = author,
-    this.genre = genre,
-    this.pages = pages,
-    this.read = read,
-    this.id = id
+
+class Book {
+    constructor (title, author, genre, pages, read, id) {
+        this.title = title
+        this.author =  author
+        this .genre = genre
+        this.pages = pages
+        this.read = read
+        this.id = id
+    }
 }
 
 function addBookToLibrary(title, author, genre, pages, read,) {
