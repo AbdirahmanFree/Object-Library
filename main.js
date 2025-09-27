@@ -166,3 +166,14 @@ reloadBtn.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => displayLibrary(page_index));
+
+const authorInput = document.getElementById("author-M")
+
+authorInput.addEventListener("input", (event) => {
+    if(authorInput.value.trim() == "") {
+        authorInput.setCustomValidity(" I am expecting an author name");
+    }
+    else {
+        authorInput.setCustomValidity("");
+    }
+})
